@@ -2,6 +2,8 @@ const Sort = require('./sort');
 
 class Shell extends Sort {
 
+    getName(){ return "SHELL SORT"; }
+
     executeSort(array) {
 
         // choose gap
@@ -15,8 +17,7 @@ class Shell extends Sort {
 
                 while (currentIndex >= 0) {
                     // swap
-                    this.comparisons++;
-                    if (array[currentIndex] > array[gapIndex]) {
+                    if (this.greatherThan(array[currentIndex], array[gapIndex])) {
                         this.swap(array, currentIndex, gapIndex);
                     }
 

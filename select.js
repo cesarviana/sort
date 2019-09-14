@@ -6,6 +6,8 @@ class Select extends Sort {
      * Find min index and swap
      */
 
+    getName() { return  "SELECTION SORT" };
+
     executeSort(array) {
 
         for (let i = 0; i < array.length - 1; i++) {
@@ -13,8 +15,7 @@ class Select extends Sort {
             let min = i;
 
             for (let j = i + 1; j < array.length; j++) {
-                this.comparisons++;
-                if (array[j] < array[min]) {
+                if (this.lowerThan(array[j], array[min])) {
                     min = j
                 }
             }

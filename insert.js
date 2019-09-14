@@ -2,6 +2,8 @@ const Sort = require('./sort');
 
 class Insert extends Sort {
 
+    getName(){ return "INSERTION SORT"; }
+
     executeSort(array) {
 
         for (let sourceIndex = 1; sourceIndex < array.length; sourceIndex++) {
@@ -9,15 +11,12 @@ class Insert extends Sort {
 
             let targetIndex = sourceIndex - 1;
 
-            while (targetIndex >= 0 && sourceValue < array[targetIndex]) {
-                this.comparisons++;
-                array[targetIndex + 1] = array[targetIndex];
-                this.movements++;
+            while (this.greatherOrEqual(targetIndex, 0) && this.lowerThan(sourceValue, array[targetIndex])) {
+                this.set(array, targetIndex + 1, array[targetIndex])
                 targetIndex--
             }
 
-            array[targetIndex + 1] = sourceValue;
-            this.movements++;
+            this.set(array, targetIndex + 1, sourceValue)
 
         }
 

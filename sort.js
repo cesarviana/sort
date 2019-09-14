@@ -8,10 +8,13 @@ class Sort {
 
         const time = Date.now() - this.initialTime;
         return {
-            sortedArray,
+            //sortedArray,
             time,
             comparisons: this.comparisons,
-            movements: this.movements
+            movements: this.movements,
+            toString:()=>{
+                return time+"\t|"+this.comparisons+"\t|"+this.movements+"\t";
+            }
         }
     }
 
@@ -22,6 +25,26 @@ class Sort {
         this.movements++;
         array[i2] = aux;
         this.movements++;
+    }
+
+    lowerThan(a, b){
+        this.comparisons++;
+        return a < b;
+    }
+
+    greatherOrEqual(a, b){
+        this.comparisons++;
+        return a >= b;
+    }
+
+    greatherThan(a, b){
+        this.comparisons++;
+        return a > b;
+    }
+
+    set(array, index, value) {
+        this.movements++;
+        array[index] = value
     }
 }
 

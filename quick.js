@@ -2,6 +2,8 @@ const Sort = require('./sort');
 
 class Quick extends Sort {
 
+    getName(){ return "QUICK SORT"; }
+
     executeSort(array) {
         const copyArray = [...array];
         this.quickSort(copyArray, 0, copyArray.length);
@@ -15,7 +17,7 @@ class Quick extends Sort {
         let comparisionIndex = begin;
 
         while (comparisionIndex < pivotIndex) {
-            if (array[comparisionIndex] > array[pivotIndex]) {
+            if (this.greatherThan( array[comparisionIndex], array[pivotIndex])) {
                 // pivo anda para esquerda
                 // item no currentComparisonIndex assume o lugar antigo do pivo
                 // elemento da esquerda entra no currentComparisonIndex
