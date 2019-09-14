@@ -8,7 +8,7 @@ class ArraysLoader {
         return [
                 [1,2,3,4], // Ordenado
                 [5,4,3,2], // Inverso
-                [1,3,4,5], // Aleatório
+                [9,3,4,5], // Aleatório
         ];
     }
     loadComplex(){

@@ -7,10 +7,10 @@ const arraysLoader = require("./arraysLoader");
 
 function execute() {
   const sortAlgorithms = [
-    //select,
-    // insert,
-    //shell
-    //, merge, 
+    select,
+    insert,
+    shell,
+    merge, 
     quick
   ];
 

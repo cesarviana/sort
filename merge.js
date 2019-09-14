@@ -18,20 +18,19 @@ class Merge extends Sort {
           let rightArrayElement = rightArray[rightComparisonIndex];
       
           let minElement;
-          if (
-            leftArrayElement <= rightArrayElement ||
+          if (this.lowerOrEqual(leftArrayElement, rightArrayElement) ||
             rightComparisonIndex >= rightArray.length
           ) {
             leftComparisonIndex++;
             minElement = leftArrayElement;
           } else if (
-            rightArrayElement < leftArrayElement ||
+            this.lowerThan(rightArrayElement, leftArrayElement) ||
             leftComparisonIndex >= leftArray.length
           ) {
             rightComparisonIndex++;
             minElement = rightArrayElement;
           }
-          this.set(this.mergeArray, mergeArray.length, minElement);
+          this.set(mergeArray, mergeArray.length, minElement);
         }
         return mergeArray;
       }
@@ -42,10 +41,10 @@ class Merge extends Sort {
         let leftArray = [];
         let rightArray = [];
         for (let i = 0; i < splitIndex; i++) {
-          leftArray[leftArray.length] = array[i];
+          this.set(leftArray, leftArray.length, array[i]);
         }
         for (let i = splitIndex; i < array.length; i++) {
-          rightArray[rightArray.length] = array[i];
+          this.set(rightArray, rightArray.length, array[i]);
         }
         return this.merge(this.mergeSort(leftArray), this.mergeSort(rightArray));
       }

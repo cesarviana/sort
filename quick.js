@@ -11,26 +11,30 @@ class Quick extends Sort {
     }
 
     quickSort(array, begin, end) {
-        if (begin - end === 1 || begin - end === 0) return array;
+        var i, j, pivo, aux;
+        i = begin;
+        j = end - 1;
+        pivo = array[Math.ceil((begin+end)/2)];
 
-        let pivotIndex = end;
-        let comparisionIndex = begin;
-
-        while (comparisionIndex < pivotIndex) {
-            if (this.greatherThan( array[comparisionIndex], array[pivotIndex])) {
-                // pivo anda para esquerda
-                // item no currentComparisonIndex assume o lugar antigo do pivo
-                // elemento da esquerda entra no currentComparisonIndex
-                this.swap(array, pivotIndex - 1, pivotIndex);
-                if (pivotIndex - 1 !== comparisionIndex) {
-                    this.swap(array, comparisionIndex, pivotIndex);
-                }
+        while(i <= j){
+            while(this.lowerThan(array[i], pivo) && i < end){
+                i++;
             }
-            pivotIndex--;
+            while(this.greatherThan(array[j], pivo) && j > begin){
+                j--;
+            }
+            if(i <= j){
+                this.swap(array, i, j);
+                i++;
+                j--;
+            }
         }
-
-        this.quickSort(array, begin, pivotIndex);
-        this.quickSort(array, pivotIndex + 1, end);
+        if(j > begin){
+            this.quickSort(array, begin, j+1);
+        }
+        if(i < end){
+            this.quickSort(array, i, end);
+        }
     }
 }
 

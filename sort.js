@@ -13,7 +13,8 @@ class Sort {
             comparisons: this.comparisons,
             movements: this.movements,
             toString:()=>{
-                return time+"\t|"+this.comparisons+"\t|"+this.movements+"\t";
+
+                return time+"\t|"+this.comparisons+"\t|"+this.movements//+"\t|"+sortedArray.join(',');
             }
         }
     }
@@ -30,6 +31,11 @@ class Sort {
     lowerThan(a, b){
         this.comparisons++;
         return a < b;
+    }
+
+    lowerOrEqual(a,b){
+        this.comparisons++;
+        return a <= b;
     }
 
     greatherOrEqual(a, b){
