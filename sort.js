@@ -14,18 +14,21 @@ class Sort {
             movements: this.movements,
             toString:()=>{
 
-                return time+"\t|"+this.comparisons+"\t|"+this.movements//+"\t|"+sortedArray.join(',');
+                return time+","+this.comparisons+","+this.movements//+"\t|"+sortedArray.join(',');
             }
         }
     }
 
     swap(array, i1, i2) {
-        let aux = array[i1];
-        this.movements++;
-        array[i1] = array[i2];
-        this.movements++;
-        array[i2] = aux;
-        this.movements++;
+        if(i1 !== i2)
+        {
+            let aux = array[i1];
+            this.movements++;
+            array[i1] = array[i2];
+            this.movements++;
+            array[i2] = aux;
+            this.movements++;
+        }
     }
 
     lowerThan(a, b){

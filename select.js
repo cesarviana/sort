@@ -20,7 +20,10 @@ class Select extends Sort {
                 }
             }
 
-            this.swap(array, min, i);
+            if(min != i)
+            {
+                this.swap(array, min, i);
+            }
 
         }
 

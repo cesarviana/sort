@@ -11,7 +11,7 @@ class Quick extends Sort {
     }
 
     quickSort(array, begin, end) {
-        var i, j, pivo, aux;
+        var i, j, pivo;
         i = begin;
         j = end - 1;
         pivo = array[Math.ceil((begin+end)/2)];
