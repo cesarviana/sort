@@ -6,15 +6,15 @@ class ArraysLoader {
     }
     loadSimple(){
         return [
-                [1,2,3,4], // Ordenado
-                [5,4,3,2], // Inverso
-                [9,3,4,5], // Aleatório
+                { name: 'ordenado', array: [1,2,3,4] },
+                { name: 'inverso', array: [5,4,3,2] },
+                { name: 'aleatório', array: [9,3,4,5] }
         ];
     }
     loadComplex(){
-        let ordenado = this.loadArray('./saidaOrdenada.txt');
-        let inverso = this.loadArray('./saidaInvertida.txt');
-        let aleatorio = this.loadArray('./saidaAleatoria.txt');
+        let ordenado = { name: 'ordenado', array: this.loadArray('./saidaOrdenada.txt') };
+        let inverso = { name: 'inverso', array: this.loadArray('./saidaInvertida.txt') };
+        let aleatorio = { name: 'aleatório', array: this.loadArray('./saidaAleatoria.txt') };
         return [ ordenado, inverso, aleatorio ];
     }
 

@@ -10,16 +10,13 @@ class Sort {
         const sortedArray = this.executeSort(array);
 
         const t1 = performance.now();
-        const time = ((t1 - t0) / 1000).toFixed(6);
+        const time = ((t1 - t0) / 1000)
         
         return {
-            //sortedArray,
+            sortedArray,
             time,
             comparisons: this.comparisons,
-            movements: this.movements,
-            toString:()=>{
-                return time+"\t|"+this.comparisons+"\t|"+this.movements
-            }
+            movements: this.movements
         }
     }
 
