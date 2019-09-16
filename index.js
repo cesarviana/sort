@@ -20,13 +20,10 @@ function execute() {
   const quantities = [500, 1000, 5000, 10000];
 
   sortAlgorithms.forEach(algo => {
-    console.log(algo.getName());
     quantities.forEach(quantity => {
-      console.log(quantity);
-      console.log("Tipo\t\t| Tempo\t|Comparações\t|Movimentos");
       arraysToSort.forEach((array, i) => {
         const arrayCopy = array.slice(0, quantity);
-        console.log(arrayNames[i], '\t|', algo.sort(arrayCopy).toString());
+        console.log(algo.getName(), '\t|', quantity, '\t\t|', arrayNames[i], '\t|', algo.sort(arrayCopy).toString());
       });
     });
   });

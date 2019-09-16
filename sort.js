@@ -1,20 +1,24 @@
+const { performance } = require('perf_hooks')
+
 class Sort {
     sort(array) {
-        this.initialTime = Date.now();
+        const t0 = performance.now();
+        
         this.comparisons = 0;
         this.movements = 0;
 
         const sortedArray = this.executeSort(array);
 
-        const time = Date.now() - this.initialTime;
+        const t1 = performance.now();
+        const time = ((t1 - t0) / 1000).toFixed(6);
+        
         return {
             //sortedArray,
             time,
             comparisons: this.comparisons,
             movements: this.movements,
             toString:()=>{
-
-                return time+","+this.comparisons+","+this.movements//+"\t|"+sortedArray.join(',');
+                return time+"\t|"+this.comparisons+"\t|"+this.movements
             }
         }
     }
