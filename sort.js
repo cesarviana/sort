@@ -21,15 +21,15 @@ class Sort {
     }
 
     swap(array, i1, i2) {
-        if(i1 !== i2)
-        {
+        // if(i1 !== i2)
+        // {
             let aux = array[i1];
             this.movements++;
             array[i1] = array[i2];
             this.movements++;
             array[i2] = aux;
             this.movements++;
-        }
+        // }
     }
 
     lowerThan(a, b){

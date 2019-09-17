@@ -18,37 +18,58 @@ function execute() {
   const quantities = [
     500,
     1000,
-    5000, 
+    5000,
     10000
   ];
 
+  let output = 'Algoritmo,Quantidade,Tempo,Tipo,Comparações,Movimentos\n';
+
   sortAlgorithms.forEach(algo => {
-    quantities.forEach(quantity => {
-      dataToSort.forEach((data, i) => {
+    dataToSort.forEach((data, i) => {
+
+      const EXECUTIONS_PER_QUANTITY = 10;
+      const EXECUTIONS = quantities.length * EXECUTIONS_PER_QUANTITY;
+
+      let timeSum = {};
+      let movementsSum = {};
+      let comparisonsSum = {};
+
+      for(let i=0; i<quantities.length; i++)
+      {
+        timeSum[quantities[i]] = 0;
+        movementsSum[quantities[i]] = 0;
+        comparisonsSum[quantities[i]] = 0;
+      }
+
+      for(let i=0; i<EXECUTIONS; i++)
+      {
+
+        const quantity = quantities[i % quantities.length]
         
-        let timeSum = 0;
-        let movementsSum = 0;
-        let comparisonsSum = 0;
+        let arrayCopy = data.array.slice(0, quantity);
+        let result = algo.sort(arrayCopy);
         
-        const EXECUTIONS = 50;
+        timeSum[quantity] += result.time
+        movementsSum[quantity] += result.movements
+        comparisonsSum[quantity] += result.comparisons
+      }
 
-        for(let i=0; i<EXECUTIONS; i++)
-        {
-          let arrayCopy = data.array.slice(0, quantity);
-          let result = algo.sort(arrayCopy);
-          timeSum += result.time
-          movementsSum += result.movements
-          comparisonsSum += result.comparisons
-        }
+      for(let i=0; i<quantities.length; i++)
+      {
+        const quantity = quantities[i];
 
-        const time = timeSum / EXECUTIONS
-        const movements = movementsSum / EXECUTIONS
-        const comparisons = comparisonsSum / EXECUTIONS
+        const time = timeSum[quantity] / EXECUTIONS_PER_QUANTITY
+        const movements = movementsSum[quantity] / EXECUTIONS_PER_QUANTITY
+        const comparisons = comparisonsSum[quantity] / EXECUTIONS_PER_QUANTITY
 
-        console.log(algo.getName(), '\t|', quantity, '\t\t|', data.name, '\t|', time.toFixed(6), '\t|', comparisons, '\t|', movements );
-      });
+        output += `${algo.getName()},${quantity},${time.toFixed(6)},${data.name},${comparisons},${movements}\n`;
+        
+      }
     });
   });
+
+  const fs = require('fs')
+  fs.writeFile('output.csv', output, (err) => { if (err) console.error(err)} )
 }
 
 function test() {

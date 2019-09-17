@@ -11,7 +11,7 @@ class Insert extends Sort {
 
             let targetIndex = sourceIndex - 1;
 
-            while (this.greatherOrEqual(targetIndex, 0) && this.lowerThan(sourceValue, array[targetIndex])) {
+            while (targetIndex > 0 && this.lowerThan(sourceValue, array[targetIndex])) {
                 this.set(array, targetIndex + 1, array[targetIndex])
                 targetIndex--
             }
